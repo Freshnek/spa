@@ -6,6 +6,8 @@ city = 'Kraków';
 zip = '30-781';
 country = 'Poland';
 
+console.log(title + name + surname + street + city + zip + country)
+console.log(`${title} + ${name} + ${surname} + ${street} + ${city} + ${zip} + ${country}`)
 
 /* 
 dr Mateusz Kubicki

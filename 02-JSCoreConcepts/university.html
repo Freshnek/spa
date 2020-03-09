@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>University</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <script>
+      names = ["Piotr", "Anna", "Michał", "Paulina", "Mateusz", "Magda"];
+
+      class Students {
+        constructor(names) {
+          this.names = names;
+        }
+
+        startWith(letter) {
+          var arr = [];
+          this.names.forEach(element => {
+            if (element.charAt(0) == letter) {
+              arr.push(element);
+            }
+          });
+          return arr; // names (array) which starts with the letter
+        }
+
+        sort() {
+          return this.names.sort(); // names (array) in alphabetical order
+        }
+
+        get() {
+          return this.names; // names (array) in natural order
+        }
+
+        getFirst(n) {
+          return this.names.slice(0, n); // get first 'n' names (array)
+        }
+      }
+
+      students = new Students(names);
+      console.log(students.get());
+      console.log(students.sort());
+      console.log(students.startWith("P"));
+      console.log(students.startWith("M").sort());
+      console.log(students.sort().slice(0, 4));
+      console.log(
+        students
+          .startWith("M")
+          .sort()
+          .slice(0, 2)
+      );
+      console.log(students.get());
+    </script>
+  </body>
+</html>

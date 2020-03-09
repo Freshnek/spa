@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Person</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <script>
+        class Person {
+            constructor(firstName, lastName) {
+                this.firstName = firstName
+                this.lastName = lastName
+            }
+
+            personDataInSpecialFormat() {
+                let firstNameFormatted = this.firstName.charAt(0).toUpperCase() + this.firstName.slice(1)
+                let lastNameFormatted = this.lastName.toUpperCase()
+                return firstNameFormatted + " " + lastNameFormatted
+            }
+
+            personInitials() {
+                return this.firstName.charAt(0).toUpperCase() + "." + this.lastName.charAt(0).toUpperCase() + "."
+            }
+        }
+        
+        janNowak = new Person("jan", "nowak")
+        piotrRachwalik = new Person("piotr", "rachwalik")
+        console.log(janNowak.personDataInSpecialFormat())
+        console.log(janNowak.personInitials())
+        console.log(piotrRachwalik.personDataInSpecialFormat())
+        console.log(piotrRachwalik.personInitials())
+    </script>
+</body>
+</html>
