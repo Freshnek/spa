@@ -1,28 +1,67 @@
 <!DOCTYPE html>
 <html>
+   <head>
+      <title>Shopping List</title>
+      <meta charset="UTF-8" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   </head>
 
-<head>
-    <title>Shopping List</title>
-    <meta charset="UTF-8">
-</head>
+   <body>
+      <h1>Shopping List</h1>
+      <p>
+         New item: <input type="text" name="item" />
+         <button type="button">Add</button>
+      </p>
+      <h3>List of items</h3>
+      <ol>
+         <li>cooking oil</li>
+         <li>breakfast cereal</li>
+         <li>bread</li>
+      </ol>
 
-<body>
-    <h1>Shopping List</h1>
-    <p>
-        New item: <input type="text" name="item">
-        <button type="button">Add</button>
-    </p>
-    <h3>List of items</h3>
-    <ol>
-        <li>cooking oil</li>
-        <li>breakfast cereal</li>
-        <li>bread</li>
-    </ol>
+      <script>
+         const getInputItem = () => {
+            return document.getElementsByName('item')[0].value;
+         };
 
-    <script>
-    	// a JavaScript code here ...
+         const getOrderedList = () => {
+            return document.getElementsByTagName('ol')[0];
+         };
 
-    </script>
-</body>
+         const createNewItem = () => {
+            return document.createElement('li');
+         };
 
+         const createText = text => {
+            return document.createTextNode(text);
+         };
+
+         const appendTextToItem = (item, text) => {
+            return item.appendChild(text);
+         };
+
+         const appendItemToList = (item, list) => {
+            return list.appendChild(item);
+         };
+
+         const addValueFromInputToListOfItems = () => {
+            return document.getElementsByTagName('button')[0].addEventListener('click', () => {
+               let item = createNewItem();
+               let inputText = getInputItem();
+               let orderedList = getOrderedList();
+               let text = createText(inputText);
+               let filledItem = appendTextToItem(item, text);
+               appendItemToList(item, orderedList);
+            });
+         };
+
+         const deleteItemFromList = () => {
+            $('li').dblclick(function() {
+                $(this).remove()
+            })
+         };
+         deleteItemFromList()
+         addValueFromInputToListOfItems();
+      </script>
+   </body>
 </html>

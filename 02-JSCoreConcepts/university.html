@@ -36,7 +36,11 @@
         }
 
         getFirst(n) {
-          return this.names.slice(0, n); // get first 'n' names (array)
+            arr = (n) => {
+                arr = this.names.slice(0, n)
+            }
+            return arr
+          //return this.names.slice(0, n); // get first 'n' names (array)
         }
       }
 
@@ -45,12 +49,12 @@
       console.log(students.sort());
       console.log(students.startWith("P"));
       console.log(students.startWith("M").sort());
-      console.log(students.sort().slice(0, 4));
+      console.log(students.sort().getFirst(4));
       console.log(
         students
           .startWith("M")
           .sort()
-          .slice(0, 2)
+          .getFirst(2)
       );
       console.log(students.get());
     </script>
