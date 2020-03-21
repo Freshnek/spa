@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <title>People</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+   </head>
+   <body>
+      <button id="display-people-data" onclick="connect()">Wyświetl dane osób</button>
+      <ol id="people-list"></ol>
+      <script>
+         function connect() {
+            const method = 'GET';
+            const jsonFile = '/people.json';
+            let xhr = new XMLHttpRequest();
+            xhr.open(method, jsonFile, true);
+            xhr.onreadystatechange = function() {
+               if (this.readyState == 4 && this.status == 200) {
+                  const data = JSON.parse(xhr.responseText);
+                  data.forEach(person => {
+                     const listElement = document.createElement('li');
+                     listElement.setAttribute('class', `person`);
+                     listElement.innerText = person.name + ' ' + person.surname.toUpperCase() + ', ' + person.country;
+                     const orderedList = document.getElementById('people-list');
+                     orderedList.appendChild(listElement);
+                  });
+               }
+            };
+            xhr.send();
+         }
+      </script>
+   </body>
+</html>

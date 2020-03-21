@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <title>Gold Charts</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+   </head>
+   <body>
+      <h1>Ceny złota</h1>
+      <canvas id="gold-chart" width="400" height="400"></canvas>
+      <script>
+         function displayChart() {
+            const method = 'GET';
+            const URL = 'http://api.nbp.pl/api/cenyzlota/last/10?format=json';
+            let xhr = new XMLHttpRequest();
+            xhr.open(method, URL, true);
+            xhr.onreadystatechange = function() {
+               if (this.readyState == 4 && this.status == 200) {
+                  const data = JSON.parse(xhr.responseText);
+                  const labels = data.map(label => {
+                     return label.data;
+                  });
+                  const values = data.map(value => {
+                     return value.cena;
+                  });
+                  buildChart(labels, values, "Ceny złota")
+               }
+               
+            };
+            xhr.send();
+         }
+         function buildChart(labels, values, title) {
+            const data = {
+               labels: labels,
+               datasets: [
+                  {
+                     label: title,
+                     data: values
+                  }
+               ]
+            };
+            const ctx = document.getElementById('gold-chart').getContext('2d');
+            const chart = new Chart(ctx, {
+               type: 'line',
+               data: data,
+               options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                     xAxes: [
+                        {
+                           scaleLabel: {
+                              display: true,
+                              labelString: 'Data'
+                           }
+                        }
+                     ],
+                     yAxes: [
+                        {
+                           scaleLabel: {
+                              display: true,
+                              labelString: 'PLN'
+                           }
+                        }
+                     ]
+                  }
+               }
+            });
+            return chart;
+         }
+         displayChart()
+      </script>
+   </body>
+</html>

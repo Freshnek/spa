@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <title>Currencies</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+   </head>
+   <body>
+      <h3 id="currencies">Kursy Walut:</h3>
+      <p id="eur"></p>
+      <p id="usd"></p>
+      <p id="gbp"></p>
+      <script>
+         function connect() {
+            const method = 'GET';
+            const currencies = ['usd', 'gbp', 'eur'];
+            currencies.forEach(currency => {
+               const URL = `http://api.nbp.pl/api/exchangerates/rates/a/${currency}?format=json`;
+               let xhr = new XMLHttpRequest();
+               xhr.open(method, URL, true);
+               xhr.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                     const data = JSON.parse(xhr.responseText);
+                     document.getElementById(`${currency}`).innerText =
+                        `Kurs ${currency.toUpperCase()}:` + " " + data.rates[0].mid;
+                  }
+               };
+               xhr.send();
+            });
+         }
+         connect();
+      </script>
+   </body>
+</html>
