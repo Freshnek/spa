@@ -7,10 +7,10 @@
       <meta name="viewport" content="width=device-width, initial-scale=1" />
    </head>
    <body>
-      <button id="display-people-data" onclick="connect()">Wyświetl dane osób</button>
+      <button id="display-people-data" onclick="displayPeopleData()">Wyświetl dane osób</button>
       <ol id="people-list"></ol>
       <script>
-         function connect() {
+         function displayPeopleData() {
             const method = 'GET';
             const jsonFile = '/people.json';
             let xhr = new XMLHttpRequest();
