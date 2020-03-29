@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Currency</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+      <div id="currency-app">
+          <table border="1" style="border: 1px solid black; border-collapse: collapse;">
+              <thead>
+                  <tr>
+                      <td>Currency</td>
+                      <td>Code</td>
+                      <td>Mid</td>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr v-for="currency in rates" :key="currency.id">
+                    <td>{{ currency.currency }}</td>
+                    <td>{{ currency.code }}</td>
+                    <td>{{ currency.mid }}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+    <script>
+      var app = new Vue({
+        el: '#currency-app',
+        data: {
+            rates: {}
+        },
+        async mounted() {
+            await fetch('http://api.nbp.pl/api/exchangerates/tables/a/')
+            .then(res => res.json())
+            .then(res => this.rates = res[0].rates)
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,37 +1,80 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
-<body>
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        films: [
-          {
-            language: 'Python',
-            popularity: 25.95
-          },
-          {
-            language: 'Java',
-            popularity: 21.42
-          },
-          {
-            language: 'JavaScript',
-            popularity: 8.26
-          },
-          {
-            language: 'C#',
-            popularity: 7.62
-          },
-          {
-            language: 'Php',
-            popularity: 7.37
-          }
-        ] 
-      }
-    });
-  </script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+  </head>
+  <body>
+    <div id="app"><canvas id="programming-languages-chart"></canvas></div>
+    <script >
+        //   export default {
+        // extends: List,
+        // data: () => ({
+        //   chartdata: {
+        //     labels: app.films.map(item => item.language),
+        //     datasets: [
+        //       {
+        //         label: 'Język programowania',
+        //         data: app.films.map(item => item.popularity)
+        //       }
+        //     ]
+        //   },
+        //   options: {
+        //     responsive: true,
+        //     maintainAspectRatio: false
+        //   }
+        // }),
+
+        
+      // }
+      var app = new Vue({
+        el: '#app',
+        data: {
+          films: [
+            {
+              language: 'Python',
+              popularity: 25.95
+            },
+            {
+              language: 'Java',
+              popularity: 21.42
+            },
+            {
+              language: 'JavaScript',
+              popularity: 8.26
+            },
+            {
+              language: 'C#',
+              popularity: 7.62
+            },
+            {
+              language: 'Php',
+              popularity: 7.37
+            }
+          ],
+          chart: {}
+        },
+        mounted() {
+          let ctx = document.getElementById("programming-languages-chart").getContext("2d")
+          this.chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: this.films.map(item => item.language),
+              datasets: [
+                {
+                  label: 'Język programowania',
+                  data: this.films.map(item => item.popularity)
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false
+            }
+          })
+        }
+      });
+    </script>
+  </body>
 </html>

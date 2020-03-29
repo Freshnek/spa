@@ -4,6 +4,36 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+  <div id="app">
+    <span style="font-weight: 700;">EMPLOYEE RECORD</span> <br>
+    Name 1: {{ name1 }} <br>
+    <span v-if="name2">
+      Name 2: {{ name2 }} <br>
+    </span> 
+    Surname: {{ surname }} <br>
+    <span v-if="foreigner === false">
+      Pesel: {{ pesel }} <br>
+    </span>
+    <span v-else>
+      Narodowość: {{ nationality }} <br>
+    </span>
+    Address: {{ address }} <br>
+  </div>
+  <div id="app-foreigner">
+    <span style="font-weight: 700;">EMPLOYEE RECORD 2</span> <br>
+    Name 1: {{ name1 }} <br>
+    <span v-if="name2">
+      Name 2: {{ name2 }} <br>
+    </span> 
+    Surname: {{ surname }} <br>
+    <span v-if="foreigner === false">
+      Pesel: {{ pesel }} <br>
+    </span>
+    <span v-else>
+      Narodowość: {{ nationality }} <br>
+    </span>
+    Address: {{ address }} <br>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
@@ -14,7 +44,21 @@
         foreigner: false,
         nationality: 'Polish',
         pesel: '92021708229',
-        address: 'ul. Szeroka 3, Kraków',
+        address: 'ul. Szeroka 3, Kraków'
+      }
+    });
+
+    var appForeigner = new Vue({
+      el: '#app-foreigner',
+      data: {
+        name1: 'John',
+        name2: '',
+        surname: 'Brown',
+        foreigner: true,
+        nationality: 'USA',
+        pesel: '',
+        address: 'Holland Drive 4, Chicago'
+      }
     });
   </script>
 
