@@ -7,15 +7,50 @@
   <h1>Body Mass Index</h1>
   <div id="app">
     <span>Waga: </span>
-    <input> kg<br>
+    <input type="number" v-model="weight"> kg<br>
     <span>Wzrost: </span>
-    <input> cm
-    <p>Wskaźnik BMI:</p>
+    <input type="number" v-model="height"> cm
+    <p>Wskaźnik BMI:
+      {{calculate}}
+    </p>
   </div>
   <script>
     var app = new Vue({
       el: '#app',
       data: {
+        weight: 0,
+        height: 0
+      },
+      computed: {
+        calculate: function () {
+          result = this.weight / (this.height/100 * this.height/100)
+          text = ''
+          if (result < 16) {
+            text = "wyglodzenie"
+          }
+          if (result >= 16 && result <= 16.99) {
+            text = "wychudzenie"
+          }
+          if (result >= 17 && result <= 18.49) {
+            text = "niedowaga"
+          }
+          if (result >= 18.5 && result <= 24.99) {
+            text = "pozadana masa ciala"
+          }
+          if (result >= 25 && result <= 29.99) {
+            text = "nadwaga"
+          }
+          if (result >= 30 && result <= 34.99) {
+            text = "otylosc 1 stopnia"
+          }
+          if (result >= 35 && result <= 39.99) {
+            text = "otylosc 2 stopnia"
+          }
+          if (result >= 40) {
+            text = "otylosc 3 stopnia"
+          }
+          return text
+        }
       }
     });
   </script>

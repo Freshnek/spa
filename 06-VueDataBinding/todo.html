@@ -11,9 +11,7 @@
     <button type="button" @click="add()">Add</button>
     <h3>To Do List</h3>
     <ol>
-      <li>...</li>
-      <li>...</li>
-      <li>...</li>
+      <li v-for="todo in todos" :key="todo.id" @dblclick="del">{{todo}}</li>
     </ol>
   </div>
   <script>
@@ -26,7 +24,10 @@
       methods: {
         add: function() {
           this.todos.push(this.todo);
-        }
+        },
+        del: function() {
+          this.todos.pop(this.todo)
+        } 
       }
     });
   </script>

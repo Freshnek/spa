@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Book</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span>Book name:</span>
+        <input type="text" v-model="book_name">  <br>
+        <span>Author name:</span>
+        <input type="text" v-model="author_name"><br>
+        <button id="save" v-on:click="save">Zapisz</button>
+      </div>
+      <script>
+        var app = new Vue({
+          el: '#app',
+          data: {
+            book_name: '',
+            author_name: ''
+          },
+          methods: {
+            save: function ($event) {
+                console.log(this.book_name),
+                console.log(this.author_name)
+            }
+          }
+        });
+      </script>
+</body>
+</html>

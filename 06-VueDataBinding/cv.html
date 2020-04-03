@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <span id="first-name">Imię</span>
+      <input type="text" v-model="person.first_name" /><br />
+      <span id="last-name">Nazwisko</span>
+      <input type="text" v-model="person.last_name" /><br />
+      <span id="age">Wiek</span>
+      <input type="number" v-model="person.age" /><br />
+      <input type="radio" id="female" value="female" v-model="person.sex" />
+      <label for="female">Kobieta</label>
+      <input type="radio" id="male" value="male" v-model="person.sex" />
+      <label for="male">Mezczyzna</label><br />
+      <input type="checkbox" id="none" value="none" v-model="person.education" />
+      <label for="none">Brak</label>
+      <input type="checkbox" id="primary" value="primary" v-model="person.education" />
+      <label for="primary">Podstawowe</label>
+      <input type="checkbox" id="secondary" value="secondary" v-model="person.education" />
+      <label for="secondary">Srednie</label>
+      <input type="checkbox" id="higher" value="higher" v-model="person.education" />
+      <label for="higher">Wyzsze</label><br />
+      <input type="checkbox" id="computer-skills" value="computer-skills" v-model="person.skills" />
+      <label for="computer-skills">Obsługa komputera</label>
+      <input type="checkbox" id="driver-license" value="driver-license" v-model="person.skills" />
+      <label for="driver-license">Prawo jazdy</label>
+      <input type="checkbox" id="creativity" value="creativity" v-model="person.skills" />
+      <label for="creativity">Kreatywność</label>
+      <input type="checkbox" id="teamplay" value="teamplay" v-model="person.skills" />
+      <label for="teamplay">Praca w zespole</label>
+      <button id="save" @click="save">Zapisz</button>
+      <button id="read" @click="read">Czytaj</button>
+    </div>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          person: {
+            first_name: '',
+            last_name: '',
+            age: 0,
+            sex: '',
+            education: [],
+            skills: [],
+          }
+        },
+        methods: {
+          save: function ($event) {
+            window.localStorage.setItem('person', JSON.stringify(this.person));
+          },
+          read: function ($event) {
+            console.log(JSON.parse(window.localStorage.getItem('person')))
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

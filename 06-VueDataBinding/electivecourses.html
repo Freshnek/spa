@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Elective Courses</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" id= "informatyka-stosowana" value= "informatyka-stosowana" v-model="subjects"> 
+        <label for="informatyka-stosowana">Informatyka Stosowana</label>
+        <input type="checkbox" id= "prawo" value= "prawo" v-model="subjects"> 
+        <label for="prawo">Prawo</label>
+        <input type="checkbox" id= "turystyka" value= "turystyka" v-model="subjects"> 
+        <label for="turystyka">Turystyka</label>
+        <input type="checkbox" id= "innowacje-w-biznesie" value= "innowacje-w-biznesie" v-model="subjects"> 
+        <label for="innowacje-w-biznesie">Innowacje w Biznesie</label>
+        <input type="checkbox" id= "ekonomia" value= "ekonomia" v-model="subjects"> 
+        <label for="ekonomia">Ekonomia</label><br>
+        <span id="counter">Liczba wybranych przedmiotów: {{ calculate }}</span>
+            
+      </div>
+      <script>
+        var app = new Vue({
+          el: '#app',
+          data: {
+            subjects: []
+          },
+          computed: {
+              calculate: function () {
+                  return this.subjects.length
+              }
+          }
+        });
+      </script>
+</body>
+</html>
