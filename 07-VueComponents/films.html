@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Films</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <film title="Mroczny rycerz" director="Christopher Nolan" year=2008></film>
+        <film title="Lord of the Ring: Return of the King" director="Peter Jackson" year=2002 ></film>
+        <film title="Star Wars: Return of the Jedi" director="Richard Marquand" year=1983></film>
+    </div>
+</body>
+<script>
+    Vue.component('film', {
+    props: {
+        title: String,
+        director: String,
+        year: String
+    },
+    template: '<div><h1>{{ title }}</h1><p>{{ director }}</p><p>{{ year }}</p></div>'
+  })
+  new Vue({el: "#app"})
+</script>
+</html>

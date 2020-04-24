@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Architektura</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>Architektura von Neumanna</h1>
+            <ul>
+                <architecture v-for="component in components" :key="component.id" :component_name="component"></architecture>
+            </ul>
+        </div>
+    </body>
+    <script>
+        Vue.component('architecture', {
+            template: '<li>{{component_name}}</li>',
+            props: {
+                component_name: String
+            }
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                components: [
+                    'pamiec',
+                    'jednostka sterujaca',
+                    'jednostka arytmetyczno-logiczna',
+                    'urzadzenia wejscia/wyjscia',
+                ],
+            },
+        });
+    </script>
+</html>

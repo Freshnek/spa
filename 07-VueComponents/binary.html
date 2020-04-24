@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Binary</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <converter :decimal=10></converter>
+        <converter :decimal=1432423></converter>
+        <converter :decimal=2323></converter>
+        <converter :decimal=1223230></converter>
+    </div>
+</body>
+<script>
+Vue.component('converter', {
+    props: {
+        decimal: Number,
+    },
+    methods: {
+        convert() {
+            return (this.decimal).toString(2)
+        }
+    },
+    template: '<p>{{ decimal }}(10)={{convert()}}(2)</p>'
+})
+new Vue ({
+    el: "#app"})
+</script>
+</html>

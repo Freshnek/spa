@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Api</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <api v-for="rate in rates" :currency=rate></api>
+    </div>
+</body>
+<script>
+    Vue.component('api', {
+        template: '<p>{{currency.currency}}</p>',
+        props: {
+            currency: Object
+        }
+    })
+    new Vue({
+        el: "#app",
+        data: {
+            rates: []
+        },
+        async mounted() {
+            await fetch('http://api.nbp.pl/api/exchangerates/tables/a/')
+            .then(res => res.json())
+            .then(res => this.rates = res[0].rates)
+        }
+    })
+</script>
+</html>
